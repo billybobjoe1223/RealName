@@ -1,0 +1,5 @@
+RealName v1.0.0
+Tested with Bukkit build #953
+Use:
+/rname <displayname>
+- shows a players username by looking up with his display name.

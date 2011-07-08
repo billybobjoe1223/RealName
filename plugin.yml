@@ -5,3 +5,5 @@ commands:
     rname:
         description: Returns a user's real name based on their display name.
         usage: /rname <displayname>
+        aliases: [realname]
+        permission: realname.rname
