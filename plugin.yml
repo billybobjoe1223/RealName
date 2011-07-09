@@ -1,6 +1,6 @@
 name: RealName
 main: me.billybobjoe1223.RealName.RealName
-version: 1.0.0
+version: 1.1.0
 commands:
     rname:
         description: Returns a user's real name based on their display name.
