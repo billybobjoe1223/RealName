@@ -28,12 +28,12 @@ public class RealName extends JavaPlugin {
 		Server server = sender.getServer();
 		Player[] players = server.getOnlinePlayers();
 		Player player = (Player) sender;
- 		if(cmd.getLabel().equalsIgnoreCase("rname") && args.length == 1) {
+ 		if(cmd.getLabel().equalsIgnoreCase("rname") || cmd.getLabel().equalsIgnoreCase("realname") && args.length == 1) {
 			if(permissionHandler.has(player, "realname.rname")) {
 				int i;
 				for(i = players.length - 1; i >= 0; i--) {
 					if(args[0].equalsIgnoreCase(players[i].getDisplayName())) {
-						sender.sendMessage(ChatColor.RED + "Player's real name is " + players[i].getName());
+						sender.sendMessage(ChatColor.RED + "Player's real name is " + players[i].getName() + ".");
 						return true;
 					} else {
 						if(i == 0) {
@@ -46,6 +46,19 @@ public class RealName extends JavaPlugin {
 			}
 			return true;
 		}
+ 		if(cmd.getLabel().equalsIgnoreCase("dname") || cmd.getLabel().equalsIgnoreCase("displayname") && args.length == 1) {
+ 			if(permissionHandler.has(player, "realname.dname")) {
+ 				if(server.getPlayer(args[0]) != null) {
+ 					Player plr = server.getPlayer(args[0]);
+ 					player.sendMessage(ChatColor.RED + "Player's display name is " + plr.getDisplayName() + ".");
+ 				} else {
+ 					player.sendMessage(ChatColor.RED + "No Players Found");
+ 				}
+ 			} else {
+ 				sender.sendMessage(ChatColor.RED + "You don't have permission to use this command.");
+ 			}
+ 			return true;
+ 		}
  		return false;
 	}
 	private void setupPermissions() {
