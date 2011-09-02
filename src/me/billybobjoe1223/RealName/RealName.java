@@ -26,25 +26,23 @@ public class RealName extends JavaPlugin {
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
 		Server server = sender.getServer();
-		Player[] players = server.getOnlinePlayers();
 		Player player = (Player) sender;
- 		if(cmd.getLabel().equalsIgnoreCase("rname") || cmd.getLabel().equalsIgnoreCase("realname") && args.length == 1) {
+ 		if(cmd.getLabel().equalsIgnoreCase("rname") || cmd.getLabel().equalsIgnoreCase("realname")) {
 			if(permissionHandler.has(player, "realname.rname")) {
-				int i;
-				for(i = players.length - 1; i >= 0; i--) {
-					if(args[0].equalsIgnoreCase(players[i].getDisplayName())) {
-						sender.sendMessage(ChatColor.RED + "Player's real name is " + players[i].getName() + ".");
-						return true;
-					} else {
-						if(i == 0) {
-							sender.sendMessage(ChatColor.RED + "No Players Found");
-						}
+				if(args.length == 0) {
+					return false;
+				}
+				Player[] plist = server.getOnlinePlayers();			
+				for(int i = plist.length-1; i>-1 ; i--) {
+					String pname = plist[i].getDisplayName();
+					if(pname.contains(args[0])) {
+						sender.sendMessage(ChatColor.YELLOW + pname + "'s real name is " + plist[i].getName());
 					}
-				} 
-			} else {
+				}
+				return true;
+ 			} else {
 				sender.sendMessage(ChatColor.RED + "You don't have permission to use this command.");
 			}
-			return true;
 		}
  		if(cmd.getLabel().equalsIgnoreCase("dname") || cmd.getLabel().equalsIgnoreCase("displayname") && args.length == 1) {
  			if(permissionHandler.has(player, "realname.dname")) {
@@ -66,7 +64,8 @@ public class RealName extends JavaPlugin {
 	    Plugin permissionsPlugin = this.getServer().getPluginManager().getPlugin("Permissions");
 	    
 	    if (permissionsPlugin == null) {
-	        log.info("Permission system not detected, defaulting to OP");
+	        log.info("Permission system not detected, disabling");
+	        this.getServer().getPluginManager().disablePlugin(this);
 	        return;
 	    }
 	    
