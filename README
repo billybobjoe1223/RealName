@@ -1,7 +1,7 @@
-RealName v1.1.1
-Tested with Bukkit build #953
+RealName v1.1.3
+Tested with Bukkit build #1337
 Use:
 /rname <displayname> or /realname <displayname>
 - shows a player's username by looking up with his display name.
 /dname <username> or /displayname <username>
-Displays a player's display name.
+- displays a player's display name.
