@@ -34,8 +34,10 @@ public class RealName extends JavaPlugin {
 				if (pname.contains(args[0])) {
 					sender.sendMessage(ChatColor.YELLOW + pname
 							+ "'s real name is " + plist[i].getName());
+					return true;
 				}
 			}
+			sender.sendMessage(ChatColor.RED + "No players found.");
 			return true;
 		}
 		if (cmd.getLabel().equalsIgnoreCase("dname")
