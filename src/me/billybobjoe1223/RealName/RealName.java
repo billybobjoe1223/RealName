@@ -28,7 +28,6 @@ public class RealName extends JavaPlugin {
 		if (cmd.getLabel().equalsIgnoreCase("rname") && args.length == 1
 				|| cmd.getLabel().equalsIgnoreCase("realname")
 				&& args.length == 1) {
-			addColor(args[0]);
 			Player[] plist = server.getOnlinePlayers();
 			for (int i = plist.length - 1; i > -1; i--) {
 				String pname = ChatColor.stripColor(plist[i].getDisplayName());
@@ -54,9 +53,5 @@ public class RealName extends JavaPlugin {
 			return true;
 		}
 		return false;
-	}
-	
-	public void addColor(String s) {
-
 	}
 }
